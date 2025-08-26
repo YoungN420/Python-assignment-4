@@ -1,0 +1,35 @@
+
+def process_file():
+    # Ask user for filename
+    filename = input("Hey plp learners! Enter the filename to read (e.g., input.txt): ")
+    
+    try:
+        # Attempt to open and read the file
+        with open(filename, 'r') as file:
+            content = file.readlines()
+            
+            # Add a unique campus twist: prepend a motivational quote
+            modified_content = ["--- Campus Motivation of the Day ---\n"]
+            modified_content.append("Keep coding, future tech legend! \n")
+            modified_content.extend(content)
+            
+            # Write to a new file with a unique name
+            new_filename = f"enhanced_{filename}"
+            with open(new_filename, 'w') as new_file:
+                new_file.writelines(modified_content)
+            
+            print(f"Awesome! Modified content saved to {new_filename} with a campus vibe!")
+    
+    except FileNotFoundError:
+        print("Oops! That file is playing hide and seek. Check the filename and try again!")
+    except PermissionError:
+        print("Whoa! Looks like we don’t have permission to read that file. Try another one!")
+    except IOError as e:
+        print(f"Yikes! Something went wrong reading the file: {e}. Let’s try a different file!")
+    except Exception as e:
+        print(f"Houston, we have a problem! Unexpected error: {e}. Better debug this!")
+
+# Run the program
+if __name__ == "__main__":
+    print("Welcome to the Campus File Modder! Let’s get started...")
+    process_file()
